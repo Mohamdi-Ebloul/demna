@@ -4,6 +4,8 @@ import 'package:demna/clinicliste.dart';
 import 'package:demna/hopitauxliste.dart';
 import 'package:demna/laboliste.dart';
 import 'package:demna/pharmacyliste.dart';
+import 'package:demna/Profile.dart';
+import 'package:demna/Recherche.dart';
 
 class HomePage extends StatelessWidget {
   @override
@@ -86,7 +88,7 @@ class HomePage extends StatelessWidget {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => LaboListPage(),
+                      builder: (context) => SearchPage(),
                     ),
                   );
                 },
@@ -95,12 +97,12 @@ class HomePage extends StatelessWidget {
                 leading: Icon(
                   Icons.local_hospital,
                 ),
-                title: Text('Information'),
+                title: Text('Mes informations'),
                 onTap: () {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => HopitauxListPage(),
+                      builder: (context) => ProfilePage(),
                     ),
                   );
                 },
