@@ -6,6 +6,7 @@ import 'package:demna/laboliste.dart';
 import 'package:demna/pharmacyliste.dart';
 import 'package:demna/Profile.dart';
 import 'package:demna/Recherche.dart';
+import 'package:demna/nouveaudonneur.dart';
 
 class HomePage extends StatelessWidget {
   @override
@@ -16,112 +17,154 @@ class HomePage extends StatelessWidget {
           backgroundColor: Colors.black,
         ),
         drawer: Drawer(
-          child: ListView(
-            children: <Widget>[
-              DrawerHeader(
-                child: Container(
-                  child: Image.asset("Images/sang.png"),
-                ),
+          child: Container(
+            decoration: new BoxDecoration(
+              image: new DecorationImage(
+                image: new AssetImage("Images/background.jpg"),
+                fit: BoxFit.cover,
               ),
-              ListTile(
-                leading: Icon(
-                  Icons.home,
-                ),
-                title: Text(' Acceil'),
-                onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => HomePage(),
+            ),
+            child: ListView(
+              children: <Widget>[
+                DrawerHeader(
+                  child: Container(
+                    child: Icon(
+                      Icons.bloodtype,
+                      color: Color.fromARGB(255, 6, 105, 185),
+                      size: 150,
                     ),
-                  );
-                },
-              ),
-              ListTile(
-                leading: Icon(
-                  Icons.local_hospital,
+                  ),
                 ),
-                title: Text('Hospitals'),
-                onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => HopitauxListPage(),
+                ListTile(
+                  leading: Icon(
+                    Icons.home,
+                    color: Color.fromARGB(255, 44, 154, 243),
+                  ),
+                  title: Text(
+                    ' Acceil',
+                    style: TextStyle(
+                      color: Color.fromARGB(255, 44, 154, 243),
                     ),
-                  );
-                },
-              ),
-              ListTile(
-                leading: Icon(
-                  Icons.local_hospital,
+                  ),
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => HomePage(),
+                      ),
+                    );
+                  },
                 ),
-                title: Text('Clinics'),
-                onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => ClinicListPage(),
-                    ),
-                  );
-                },
-              ),
-              ListTile(
-                leading: Icon(
-                  Icons.medication,
+                ListTile(
+                  leading: Icon(
+                    Icons.local_hospital,
+                    color: Color.fromARGB(255, 44, 154, 243),
+                  ),
+                  title: Text('Hospitals',
+                      style: TextStyle(
+                        color: Color.fromARGB(255, 44, 154, 243),
+                      )),
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => HopitauxListPage(),
+                      ),
+                    );
+                  },
                 ),
-                title: Text('Pharmacies'),
-                onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => PharmacyListPage(),
-                    ),
-                  );
-                },
-              ),
-              ListTile(
-                leading: Icon(
-                  Icons.local_pharmacy,
+                ListTile(
+                  leading: Icon(
+                    Icons.medical_services,
+                    color: Color.fromARGB(255, 44, 154, 243),
+                  ),
+                  title: Text('Clinics',
+                      style: TextStyle(
+                        color: Color.fromARGB(255, 44, 154, 243),
+                      )),
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => ClinicListPage(),
+                      ),
+                    );
+                  },
                 ),
-                title: Text('Laboratories'),
-                onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => SearchPage(),
-                    ),
-                  );
-                },
-              ),
-              ListTile(
-                leading: Icon(
-                  Icons.local_hospital,
+                ListTile(
+                  leading: Icon(
+                    Icons.favorite,
+                    color: Color.fromARGB(255, 44, 154, 243),
+                  ),
+                  title: Text('Pharmacies',
+                      style: TextStyle(
+                        color: Color.fromARGB(255, 44, 154, 243),
+                      )),
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => PharmacyListPage(),
+                      ),
+                    );
+                  },
                 ),
-                title: Text('Mes informations'),
-                onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => ProfilePage(),
-                    ),
-                  );
-                },
-              ),
-              ListTile(
-                leading: Icon(
-                  Icons.email,
+                ListTile(
+                  leading: Icon(
+                    Icons.science,
+                    color: Color.fromARGB(255, 44, 154, 243),
+                  ),
+                  title: Text('Laboratories',
+                      style: TextStyle(
+                        color: Color.fromARGB(255, 44, 154, 243),
+                      )),
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => LaboListPage(),
+                      ),
+                    );
+                  },
                 ),
-                title: Text('Contact Us'),
-                onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => ContactPage(),
-                    ),
-                  );
-                },
-              ),
-            ],
+                ListTile(
+                  leading: Icon(
+                    Icons.info,
+                    color: Color.fromARGB(255, 44, 154, 243),
+                  ),
+                  title: Text('Mes informations',
+                      style: TextStyle(
+                        color: Color.fromARGB(255, 44, 154, 243),
+                      )),
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => ProfilePage(),
+                      ),
+                    );
+                  },
+                ),
+                ListTile(
+                  leading: Icon(
+                    Icons.email,
+                    color: Color.fromARGB(255, 44, 154, 243),
+                  ),
+                  title: Text('Contact Us',
+                      style: TextStyle(
+                        color: Color.fromARGB(255, 44, 154, 243),
+                      )),
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => ContactPage(),
+                      ),
+                    );
+                  },
+                ),
+              ],
+            ),
           ),
         ),
         body: new Stack(
@@ -135,16 +178,82 @@ class HomePage extends StatelessWidget {
               ),
             ),
             new Container(
-              width: 500,
-              height: 400,
-              margin: EdgeInsets.all(50),
+              margin: EdgeInsets.all(30),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(10),
               ),
-              child: Row(
+              child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Column(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      Column(children: <Widget>[
+                        InkWell(
+                          onTap: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => AddUserPage()));
+                          },
+                          child: Container(
+                            margin: EdgeInsets.all(5),
+                            width: 350,
+                            height: 50,
+                            decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(50.0),
+                            ),
+                            child: Center(
+                                child: ListTile(
+                              title: Text(
+                                "Inscripter comme donneur",
+                                style: TextStyle(
+                                    fontWeight: FontWeight.bold, fontSize: 20),
+                              ),
+                              leading: Icon(
+                                Icons.bloodtype_outlined,
+                                color: Color.fromARGB(255, 44, 154, 243),
+                              ),
+                            )),
+                          ),
+                        ),
+                      ]),
+                      Column(children: <Widget>[
+                        InkWell(
+                            onTap: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => SearchPage()));
+                            },
+                            child: Container(
+                              width: 350,
+                              height: 50,
+                              decoration: BoxDecoration(
+                                color: Colors.white,
+                                borderRadius: BorderRadius.circular(50.0),
+                              ),
+                              child: Center(
+                                child: ListTile(
+                                  title: Text(
+                                    "Recherch donneur",
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 20),
+                                  ),
+                                  leading: Icon(
+                                    Icons.search,
+                                    color: Color.fromARGB(255, 44, 154, 243),
+                                  ),
+                                ),
+                              ),
+                            )),
+                      ]),
+                    ],
+                  ),
+                  Spacer(),
+                  Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
                       Column(children: <Widget>[
@@ -192,7 +301,7 @@ class HomePage extends StatelessWidget {
                     ],
                   ),
                   Spacer(),
-                  Column(
+                  Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
                       Column(children: <Widget>[
