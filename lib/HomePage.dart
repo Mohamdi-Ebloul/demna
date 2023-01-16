@@ -20,7 +20,7 @@ class HomePage extends StatelessWidget {
           child: Container(
             decoration: new BoxDecoration(
               image: new DecorationImage(
-                image: new AssetImage("Images/background.jpg"),
+                image: const AssetImage("Images/background.jpg"),
                 fit: BoxFit.cover,
               ),
             ),
@@ -172,7 +172,7 @@ class HomePage extends StatelessWidget {
             new Container(
               decoration: new BoxDecoration(
                 image: new DecorationImage(
-                  image: new AssetImage("Images/background.jpg"),
+                  image: const AssetImage("Images/background.jpg"),
                   fit: BoxFit.cover,
                 ),
               ),
