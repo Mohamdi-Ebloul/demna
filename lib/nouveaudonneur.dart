@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:mongo_dart/mongo_dart.dart' as dart_mongo;
 
 class AddUserPage extends StatefulWidget {
   @override
@@ -152,32 +151,7 @@ class _AddUserPageState extends State<AddUserPage> {
                       children: [
                         ElevatedButton(
                           child: Text("Enregistrer"),
-                          onPressed: () async {
-                            if (_name.isEmpty ||
-                                _bloodType.isEmpty ||
-                                _lastDonation.isEmpty ||
-                                _location.isEmpty) {
-                              setState(() {
-                                _errorMessage =
-                                    "Veuillez remplir tous les champs";
-                              });
-                            } else {
-                              // Enregistrer les informations de l'utilisateur dans MongoDB
-                              var db = dart_mongo.Db(
-                                  "mongodb://username:password@localhost/donors");
-                              await db.open();
-                              await db.collection("donors").insert({
-                                "name": _name,
-                                "tel": _phone,
-                                "email": _email,
-                                "lastDonation": _lastDonation,
-                                "bloodType": _bloodType,
-                                "location": _location
-                              });
-                              await db.close();
-                              Navigator.pop(context);
-                            }
-                          },
+                          onPressed: () async {},
                         ),
                         ElevatedButton(
                           child: Text("Anuler"),

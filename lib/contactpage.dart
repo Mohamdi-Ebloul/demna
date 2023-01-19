@@ -23,11 +23,11 @@ class ContactPage extends StatelessWidget {
                 controller: _nameController,
                 decoration: InputDecoration(
                   border: OutlineInputBorder(),
-                  labelText: 'Name',
+                  labelText: 'Nom',
                 ),
                 validator: (value) {
                   if (value!.isEmpty) {
-                    return 'Please enter your name';
+                    return ' enter  nom';
                   }
                   return null;
                 },
@@ -41,7 +41,7 @@ class ContactPage extends StatelessWidget {
                 ),
                 validator: (value) {
                   if (value!.isEmpty) {
-                    return 'Please enter your email';
+                    return 'enter email';
                   }
                   return null;
                 },
@@ -55,7 +55,7 @@ class ContactPage extends StatelessWidget {
                 ),
                 validator: (value) {
                   if (value!.isEmpty) {
-                    return 'Please enter your message';
+                    return ' enter message';
                   }
                   return null;
                 },
@@ -70,7 +70,7 @@ class ContactPage extends StatelessWidget {
                     if (await canLaunch(url)) {
                       await launch(url);
                     } else {
-                      throw 'Could not launch $url';
+                      throw ' $url';
                     }
                   }
                 },

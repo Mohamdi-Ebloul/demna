@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:mongo_dart/mongo_dart.dart' as dart_mongo;
 
 class SearchPage extends StatefulWidget {
   @override
@@ -52,22 +51,7 @@ class _SearchPageState extends State<SearchPage> {
             ),
             ElevatedButton(
               child: Text("Rechercher"),
-              onPressed: () async {
-                // Effectuer la recherche en utilisant MongoDB
-                var db = dart_mongo.Db(
-                    "mongodb://username:password@localhost/donors");
-                await db.open();
-                var donors = await db
-                    .collection("donors")
-                    .find(dart_mongo.where
-                        .eq("bloodType", _bloodType)
-                        .and(dart_mongo.where.eq("location", _location)))
-                    .toList();
-                setState(() {
-                  _donors = donors;
-                });
-                await db.close();
-              },
+              onPressed: () async {},
             ),
             Expanded(
               child: ListView.builder(

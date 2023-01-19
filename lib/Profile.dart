@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:mongo_dart/mongo_dart.dart' as dart_mongo;
 
 class ProfilePage extends StatefulWidget {
   @override
@@ -74,32 +73,7 @@ class _ProfilePageState extends State<ProfilePage> {
                   ),
                   // Bouton pour mettre à jour les informations
                   ElevatedButton(
-                    onPressed: () async {
-                      // Code pour mettre à jour les informations dans MongoDB ici...
-                      // Exemple :
-                      var db = dart_mongo.Db(
-                          "mongodb://username:password@host:port/database");
-                      await db.open();
-                      var collection = db.collection('users');
-                      await collection.update(
-                          dart_mongo.where.eq("name", _name),
-                          dart_mongo.modify
-                              .set("name", _newName)
-                              .set("lastDonation", _newLastDonation)
-                              .set("tel", _newTel)
-                              .set("email", _newEmail)
-                              .set("lastDonation", _newLastDonation)
-                              .set("wilaya", _newWilaye));
-                      await db.close();
-                      // Mise à jour des informations affichées
-                      setState(() {
-                        _name = _newName;
-                        _tel = _newTel;
-                        _email = _newEmail;
-                        _wilaye = _newWilaye;
-                        _lastDonation = _newLastDonation;
-                      });
-                    },
+                    onPressed: () async {},
                     child: Text('Mettre à jour'),
                   ),
                 ],
