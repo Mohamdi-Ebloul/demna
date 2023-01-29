@@ -66,7 +66,7 @@ class ContactPage extends StatelessWidget {
                 onPressed: () async {
                   if (_formKey.currentState!.validate()) {
                     final url =
-                        'mailto:example@email.com?subject=Contact&body=Name:%20${_nameController.text}%0AEmail:%20${_emailController.text}%0AMessage:%20${_messageController.text}';
+                        'mdn.ah44@email.com?subject=Contact&body=Name:%20${_nameController.text}%0AEmail:%20${_emailController.text}%0AMessage:%20${_messageController.text}';
                     if (await canLaunch(url)) {
                       await launch(url);
                     } else {
