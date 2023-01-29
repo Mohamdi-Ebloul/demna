@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:demna/HomePage.dart';
-import 'test.dart';
+import 'package:demna/test.dart';
 
 void main() {
   runApp(MyApp());

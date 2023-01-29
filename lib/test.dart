@@ -12,7 +12,7 @@ class test extends StatefulWidget {
 class _testState extends State<test> {
   List posts = [];
   Future getPost() async {
-    var url = "http://localhost:3000/donneur";
+    var url = "https://banqsang.pythonanywhere.com/donor-list";
     var response = await http.get(Uri.parse(url));
     var responsebody = jsonDecode(response.body);
     setState(() {
@@ -32,15 +32,13 @@ class _testState extends State<test> {
         appBar: AppBar(
           title: Text("Dialog"),
         ),
-        body: posts == null || posts.isEmpty
-            ? Center(child: CircularProgressIndicator())
-            : ListView.builder(
-                itemCount: posts.length,
-                itemBuilder: (context, i) {
-                  return Container(
-                      color: Colors.white,
-                      margin: EdgeInsets.only(top: 10, bottom: 10),
-                      child: Text("${posts[i]['result']}"));
-                }));
+        body: ListView.builder(
+            itemCount: posts.length,
+            itemBuilder: (context, i) {
+              return Container(
+                  color: Colors.white,
+                  margin: EdgeInsets.only(top: 10, bottom: 10),
+                  child: Text("${posts[i]['address']}"));
+            }));
   }
 }

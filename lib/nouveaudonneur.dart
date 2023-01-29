@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
-class AddUserPage extends StatefulWidget {
+class Ajoutedonneur extends StatefulWidget {
   @override
-  _AddUserPageState createState() => _AddUserPageState();
+  _AjoutedonneurState createState() => _AjoutedonneurState();
 }
 
-class _AddUserPageState extends State<AddUserPage> {
+class _AjoutedonneurState extends State<Ajoutedonneur> {
   final _formKey = GlobalKey<FormState>();
   String _name = "";
   String _phone = "";
