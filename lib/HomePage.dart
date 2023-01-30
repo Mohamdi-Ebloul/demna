@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:demna/contactpage.dart';
-import 'package:demna/clinicliste.dart';
-import 'package:demna/hopitauxliste.dart';
-import 'package:demna/laboliste.dart';
-import 'package:demna/pharmacyliste.dart';
-import 'package:demna/Profile.dart';
-import 'package:demna/Recherche.dart';
-import 'package:demna/nouveaudonneur.dart';
+import 'package:demna/pages/contactpage.dart';
+import 'package:demna/listes/clinicliste.dart';
+import 'package:demna/listes/hopitauxliste.dart';
+import 'package:demna/listes/laboliste.dart';
+import 'package:demna/listes/pharmacyliste.dart';
+import 'package:demna/pages/Profile.dart';
+import 'package:demna/pages/Recherche.dart';
+import 'package:demna/pages/nouveaudonneur.dart';
 
 class HomePage extends StatelessWidget {
   @override

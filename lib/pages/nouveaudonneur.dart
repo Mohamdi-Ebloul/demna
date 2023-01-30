@@ -7,18 +7,18 @@ class Ajoutedonneur extends StatefulWidget {
 
 class _AjoutedonneurState extends State<Ajoutedonneur> {
   final _formKey = GlobalKey<FormState>();
-  String _name = "";
-  String _phone = "";
-  String _email = "";
-  String _location = "";
-  String _bloodType = "A+";
-  String _errorMessage = "";
+  String Nom = "";
+  String mobile = "";
+  String age = "";
+  String address = "";
+  String bloodgroup = "A+";
   String _lastDonation = "";
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text("Ajouter un Donneur"),
+          title: Text("Inscripter"),
         ),
         body: Center(
           child: Padding(
@@ -39,7 +39,7 @@ class _AjoutedonneurState extends State<Ajoutedonneur> {
                     },
                     onChanged: (value) {
                       setState(() {
-                        _name = value;
+                        Nom = value;
                       });
                     },
                   ),
@@ -55,44 +55,28 @@ class _AjoutedonneurState extends State<Ajoutedonneur> {
                     },
                     onChanged: (value) {
                       setState(() {
-                        _phone = value;
+                        mobile = value;
                       });
                     },
                   ),
                   TextFormField(
                     decoration: InputDecoration(
-                      hintText: "Email",
+                      hintText: "age",
                     ),
                     validator: (value) {
                       if (value!.isEmpty) {
-                        return "Veuillez entrer un email";
+                        return "Veuillez entrer votre age";
                       }
                       return null;
                     },
                     onChanged: (value) {
                       setState(() {
-                        _email = value;
-                      });
-                    },
-                  ),
-                  TextFormField(
-                    decoration: InputDecoration(
-                      hintText: "Wilaya",
-                    ),
-                    validator: (value) {
-                      if (value!.isEmpty) {
-                        return "Veuillez entrer une wilaya";
-                      }
-                      return null;
-                    },
-                    onChanged: (value) {
-                      setState(() {
-                        _location = value;
+                        age = value;
                       });
                     },
                   ),
                   DropdownButton(
-                    value: _bloodType,
+                    value: bloodgroup,
                     items: [
                       DropdownMenuItem(
                         child: Text("A+"),
@@ -130,17 +114,71 @@ class _AjoutedonneurState extends State<Ajoutedonneur> {
                     ],
                     onChanged: (value) {
                       setState(() {
-                        _bloodType = value!;
+                        bloodgroup = value!;
                       });
                     },
                   ),
-                  TextField(
-                    decoration: InputDecoration(
-                      hintText: "Localisation",
-                    ),
+                  DropdownButton(
+                    value: address,
+                    items: [
+                      DropdownMenuItem(
+                        child: Text("Nouakchott"),
+                        value: "Nouakchott",
+                      ),
+                      DropdownMenuItem(
+                        child: Text("Hodh Ech Chargui"),
+                        value: "Hodh Ech Chargui",
+                      ),
+                      DropdownMenuItem(
+                        child: Text("Gorgol"),
+                        value: "Gorgol",
+                      ),
+                      DropdownMenuItem(
+                        child: Text("Assaba"),
+                        value: "Assaba",
+                      ),
+                      DropdownMenuItem(
+                        child: Text("Brakna"),
+                        value: "Brakna",
+                      ),
+                      DropdownMenuItem(
+                        child: Text("Hodh El Gharbi "),
+                        value: "Hodh El Gharbi ",
+                      ),
+                      DropdownMenuItem(
+                        child: Text("Trarza"),
+                        value: "Trarza",
+                      ),
+                      DropdownMenuItem(
+                        child: Text("Guidimaka"),
+                        value: "Guidimaka",
+                      ),
+                      DropdownMenuItem(
+                        child: Text("Nouadhibou"),
+                        value: "Nouadhibou",
+                      ),
+                      DropdownMenuItem(
+                        child: Text("Tagant"),
+                        value: "Tagant",
+                      ),
+                      DropdownMenuItem(
+                        child: Text("Adrar"),
+                        value: "Adrar",
+                      ),
+                      DropdownMenuItem(
+                        child: Text("Tiris Zemmour "),
+                        value: "Tiris Zemmour ",
+                      ),
+                      DropdownMenuItem(
+                        child: Text("Inchiri"),
+                        value: "Inchiri",
+                      ),
+
+                      // Ajouter les autres options de groupe sanguin ici
+                    ],
                     onChanged: (value) {
                       setState(() {
-                        _location = value;
+                        address = value!;
                       });
                     },
                   ),
@@ -153,12 +191,6 @@ class _AjoutedonneurState extends State<Ajoutedonneur> {
                           child: Text("Enregistrer"),
                           onPressed: () async {},
                         ),
-                        ElevatedButton(
-                          child: Text("Anuler"),
-                          onPressed: () {
-                            Navigator.pop(context);
-                          },
-                        )
                       ],
                     ),
                   )

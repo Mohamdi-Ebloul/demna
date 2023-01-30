@@ -15,7 +15,7 @@ class _SearchPageState extends State<SearchPage> {
   final _formKey = GlobalKey<FormState>();
   List posts = [];
   Future getPost() async {
-    var url = "https://banqsang.pythonanywhere.com/donor-list";
+    var url = 'https://banqsang.pythonanywhere.com/donor-list';
     var response = await http.get(Uri.parse(url));
     var responsebody = jsonDecode(response.body);
     setState(() {
