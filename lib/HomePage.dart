@@ -4,9 +4,8 @@ import 'package:demna/listes/clinicliste.dart';
 import 'package:demna/listes/hopitauxliste.dart';
 import 'package:demna/listes/laboliste.dart';
 import 'package:demna/listes/pharmacyliste.dart';
-import 'package:demna/pages/Profile.dart';
 import 'package:demna/pages/Recherche.dart';
-import 'package:demna/pages/nouveaudonneur.dart';
+import 'package:demna/main.dart';
 
 class HomePage extends StatelessWidget {
   @override
@@ -136,14 +135,14 @@ class HomePage extends StatelessWidget {
                       style: TextStyle(
                         color: Color.fromARGB(255, 44, 154, 243),
                       )),
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => ProfilePage(),
-                      ),
-                    );
-                  },
+                  // onTap: () {
+                  //   Navigator.push(
+                  //     context,
+                  //     MaterialPageRoute(
+                  //       builder: (context) => (),
+                  //     ),
+                  //   );
+                  // },
                 ),
                 ListTile(
                   leading: Icon(

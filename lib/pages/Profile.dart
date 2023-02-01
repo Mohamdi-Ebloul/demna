@@ -1,19 +1,22 @@
+import 'package:demna/network/api.dart';
 import 'package:flutter/material.dart';
+import 'dart:convert';
+
+import 'package:http/http.dart' as http;
+import 'package:demna/model/donorflutter.dart';
 
 class ProfilePage extends StatefulWidget {
   @override
+  const ProfilePage({super.key});
+
   _ProfilePageState createState() => _ProfilePageState();
 }
 
+String _bloodGroup = '';
+String _address = '';
+
 class _ProfilePageState extends State<ProfilePage> {
   // Variables pour stocker les informations de l'utilisateur
-
-  String _name = "John Doe";
-  String _tel = "22334455";
-  String _email = "email@gmail.com";
-  String _bloodType = "A+";
-  String _wilaye = "nkc";
-  String _lastDonation = "01/01/2022";
 
   // Variables pour stocker les informations modifiables
   String _newName = '';
@@ -22,65 +25,103 @@ class _ProfilePageState extends State<ProfilePage> {
   String _newWilaye = "";
   String _newLastDonation = '';
 
+  final _formKey = GlobalKey<FormState>();
+  List posts = [];
+  Future getPost(int id) async {
+    var url = 'https://banqsang.pythonanywhere.com/donor/2/';
+    var response = await http.get(Uri.parse(url));
+    var responsebody = jsonDecode(response.body);
+    setState(() {
+      posts.add(responsebody);
+    });
+    print(posts);
+  }
+
+  @override
+  void initState() {
+    final arg = ModalRoute.of(context)!.settings.arguments;
+
+    getPost(2);
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Informations'),
+        title: Text('Donors'),
       ),
-      body: Container(
-        padding: EdgeInsets.all(20),
-        child: Column(
-          children: <Widget>[
-            // Affichage des informations de l'utilisateur
-
-            // Formulaire pour mettre à jour les informations
-            Form(
-              child: Column(
-                children: <Widget>[
-                  TextFormField(
-                    initialValue: _name,
-                    onChanged: (value) => _newName = value,
-                    decoration: InputDecoration(labelText: 'Nom'),
+      body: Column(
+        children: <Widget>[
+          Expanded(
+            child: ListView.builder(
+              itemCount: posts.length,
+              itemBuilder: (context, index) {
+                return Card(
+                  child: Padding(
+                    padding: EdgeInsets.all(10.0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: <Widget>[
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: <Widget>[
+                            Text(
+                              "${posts[index]['Nom']}",
+                              style: TextStyle(
+                                  fontWeight: FontWeight.bold, fontSize: 18.0),
+                            ),
+                            SizedBox(
+                              height: 5.0,
+                            ),
+                            Text(
+                              "${posts[index]['address']}",
+                              style: TextStyle(
+                                  fontWeight: FontWeight.normal,
+                                  fontSize: 15.0),
+                            ),
+                            SizedBox(
+                              height: 5.0,
+                            ),
+                            Text(
+                              "${posts[index]['mobile']}",
+                              style: TextStyle(
+                                  fontWeight: FontWeight.normal,
+                                  fontSize: 15.0),
+                            ),
+                          ],
+                        ),
+                        Container(
+                          width: 60.0,
+                          height: 45.0,
+                          decoration: BoxDecoration(
+                            color: posts[index]['status'] == 'ready'
+                                ? Colors.blue
+                                : posts[index]['status'] == 'notready'
+                                    ? Color.fromARGB(255, 255, 193, 59)
+                                    : Colors.red,
+                            borderRadius: BorderRadius.circular(5.0),
+                          ),
+                          child: Center(
+                            child: Text(
+                              "${posts[index]['status']}" == 'ready'
+                                  ? "${posts[index]['bloodgroup']}"
+                                  : "${posts[index]['status']}" == 'notready'
+                                      ? "${posts[index]['bloodgroup']}"
+                                      : "${posts[index]['bloodgroup']}",
+                              style: TextStyle(
+                                  color: Colors.white, fontSize: 20.0),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
-                  TextFormField(
-                    initialValue: _tel,
-                    onChanged: (value) => _newTel = value,
-                    decoration: InputDecoration(labelText: 'Telephone'),
-                  ),
-                  TextFormField(
-                    onChanged: (value) => _newEmail = value,
-                    initialValue: _email,
-                    decoration: InputDecoration(labelText: 'Email'),
-                  ),
-                  TextFormField(
-                    showCursor: false,
-                    readOnly: true,
-                    initialValue: _bloodType,
-                    decoration: InputDecoration(labelText: 'Groupe sanguin'),
-                  ),
-
-                  TextFormField(
-                    onChanged: (value) => _newWilaye = value,
-                    initialValue: _wilaye,
-                    decoration: InputDecoration(labelText: 'Wilaya'),
-                  ),
-
-                  TextFormField(
-                    initialValue: _lastDonation,
-                    onChanged: (value) => _newLastDonation = value,
-                    decoration: InputDecoration(labelText: 'Dernier don'),
-                  ),
-                  // Bouton pour mettre à jour les informations
-                  ElevatedButton(
-                    onPressed: () async {},
-                    child: Text('Mettre à jour'),
-                  ),
-                ],
-              ),
+                );
+              },
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

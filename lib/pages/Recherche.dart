@@ -80,7 +80,8 @@ class _SearchPageState extends State<SearchPage> {
               itemCount: posts.length,
               itemBuilder: (context, index) {
                 if (_bloodGroup != null &&
-                    posts[index]['bloodgroup'] != _bloodGroup) {
+                        posts[index]['bloodgroup'] != _bloodGroup ||
+                    "${posts[index]['activite']}" != 'active') {
                   return Container();
                 }
                 if (_address != null &&
