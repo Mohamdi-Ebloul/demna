@@ -1,3 +1,4 @@
+import 'package:demna/pages/nouveaudonneur.dart';
 import 'package:flutter/material.dart';
 import 'package:demna/pages/contactpage.dart';
 import 'package:demna/listes/clinicliste.dart';
@@ -131,7 +132,7 @@ class HomePage extends StatelessWidget {
                     Icons.info,
                     color: Color.fromARGB(255, 44, 154, 243),
                   ),
-                  title: Text('Mes informations',
+                  title: Text('Doneur',
                       style: TextStyle(
                         color: Color.fromARGB(255, 44, 154, 243),
                       )),
