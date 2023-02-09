@@ -1,10 +1,13 @@
-import 'package:curved_navigation_bar/curved_navigation_bar.dart';
+import 'package:demna/pages/nouveaudonneur.dart';
 import 'package:flutter/material.dart';
-import 'package:demna/HomePage.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:demna/pages/Profile.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'fix/appbarfix.dart';
+import 'fix/drawerfix.dart';
+import 'fix/navigation.dart';
+import 'main.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -21,40 +24,31 @@ class _LoginPageState extends State<LoginPage> {
   void initState() {
     // TODO: implement initState
     super.initState();
+    checklogin();
   }
 
   void checklogin() async {
     SharedPreferences pref = await SharedPreferences.getInstance();
+
     String? val = await pref.getString("login");
     if (val != null) {
       Navigator.of(context).pushAndRemoveUntil(
           MaterialPageRoute(builder: (context) => ProfilePage()),
           (route) => false);
     }
+    setState(() {
+      con = pref.getInt("con")!;
+    });
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Login'),
-        backgroundColor: Color.fromARGB(255, 199, 13, 0),
+      appBar: appbarfix(
+        title: 'Login',
       ),
-      bottomNavigationBar: CurvedNavigationBar(
-        color: Color.fromARGB(255, 199, 13, 0),
-        backgroundColor: Colors.blueAccent,
-        items: <Widget>[
-          Icon(Icons.home, size: 30),
-        ],
-        onTap: (index) {
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) => HomePage(),
-            ),
-          );
-        },
-      ),
+      drawer: drawerfix(),
+      bottomNavigationBar: navigation(),
       body: SafeArea(
           child: Padding(
         padding: const EdgeInsets.all(8.0),
@@ -62,23 +56,26 @@ class _LoginPageState extends State<LoginPage> {
           child: Column(
             children: [
               SizedBox(
-                height: 20,
+                height: 80,
               ),
               TextFormField(
                 controller: emailcontroller,
                 decoration: InputDecoration(
-                    labelText: "Email",
-                    border: OutlineInputBorder(),
-                    suffixIcon: Icon(Icons.email)),
+                    labelText: "telephone",
+                    border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(50.0)),
+                    suffixIcon: Icon(Icons.mobile_friendly)),
               ),
               SizedBox(
                 height: 10,
               ),
               TextFormField(
+                obscureText: true,
                 controller: passwordController,
                 decoration: InputDecoration(
                     labelText: "Password",
-                    border: OutlineInputBorder(),
+                    border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(50.0)),
                     suffixIcon: Icon(Icons.password)),
               ),
               SizedBox(
@@ -105,7 +102,47 @@ class _LoginPageState extends State<LoginPage> {
                     fontSize: 20.0,
                   ),
                 ),
-              )
+              ),
+              Row(
+                children: [
+                  Expanded(
+                      child: Container(
+                    margin: EdgeInsets.only(left: 30, right: 10),
+                    child: Divider(color: Colors.black87, height: 100),
+                  )),
+                  Text(
+                    "ou",
+                    style: TextStyle(
+                      fontSize: 25.0,
+                      fontStyle: FontStyle.italic,
+                    ),
+                  ),
+                  Expanded(
+                      child: Container(
+                    margin: EdgeInsets.only(left: 10, right: 30),
+                    child: Divider(
+                        color: Color.fromARGB(255, 0, 0, 0), height: 100),
+                  )),
+                ],
+              ),
+              OutlinedButton.icon(
+                onPressed: () {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => Ajoutedonneur()));
+                },
+                label: Text(
+                  'Inscription ',
+                  style: TextStyle(
+                      color: Colors.red,
+                      fontSize: 25.0,
+                      fontStyle: FontStyle.italic,
+                      decoration: TextDecoration.underline),
+                ),
+                icon: Icon(
+                  Icons.add,
+                  color: Colors.red,
+                ),
+              ),
             ],
           ),
         ),

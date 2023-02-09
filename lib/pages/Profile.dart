@@ -6,6 +6,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import '../HomePage.dart';
 import '../fix/appbarfix.dart';
 import '../fix/drawerfix.dart';
+import '../main.dart';
 
 class ProfilePage extends StatefulWidget {
   @override
@@ -46,6 +47,7 @@ class _ProfilePageState extends State<ProfilePage> {
       address = pref.getString("address")!;
       status = pref.getString("status")!;
       lastdonat = pref.getString("lastdonat")!;
+      con = pref.getInt("con")!;
     });
   }
 
@@ -115,6 +117,7 @@ class _ProfilePageState extends State<ProfilePage> {
                       SharedPreferences pref =
                           await SharedPreferences.getInstance();
                       await pref.clear();
+                      await pref.setInt("con", 0);
                       Navigator.of(context).pushAndRemoveUntil(
                           MaterialPageRoute(builder: (context) => LoginPage()),
                           (route) => false);

@@ -180,24 +180,32 @@ class drawerfix extends StatelessWidget implements PreferredSizeWidget {
               },
             ),
             ListTile(
-              leading: Icon(
-                Icons.logout,
-                color: Color.fromARGB(255, 199, 13, 0),
-                size: 40,
-              ),
-              title: Text('Logout',
-                  style: TextStyle(
-                    color: Colors.black87,
-                    fontSize: 20,
-                  )),
-              onTap: () async {
-                SharedPreferences pref = await SharedPreferences.getInstance();
-                await pref.clear();
-                Navigator.of(context).pushAndRemoveUntil(
-                    MaterialPageRoute(builder: (context) => LoginPage()),
-                    (route) => false);
-              },
-            ),
+                leading: con != 0
+                    ? Icon(
+                        Icons.logout,
+                        color: Color.fromARGB(255, 199, 13, 0),
+                        size: 40,
+                      )
+                    : Text(''),
+                title: con != 0
+                    ? Text('Logout',
+                        style: TextStyle(
+                          color: Colors.black87,
+                          fontSize: 20,
+                        ))
+                    : Text(""),
+                onTap: con != 0
+                    ? () async {
+                        SharedPreferences pref =
+                            await SharedPreferences.getInstance();
+                        await pref.clear();
+                        await pref.setInt("con", 0);
+                        Navigator.of(context).pushAndRemoveUntil(
+                            MaterialPageRoute(
+                                builder: (context) => LoginPage()),
+                            (route) => false);
+                      }
+                    : () {}),
           ],
         ),
       ),

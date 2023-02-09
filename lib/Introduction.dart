@@ -117,22 +117,24 @@ class _welcomescreenState extends State<welcomescreen> {
             nextFlex: 0,
             skip: const Text(
               'Sauter',
-              style: TextStyle(color: Colors.white),
+              style: TextStyle(color: Colors.white, fontSize: 20),
             ),
             next: const Icon(
               Icons.arrow_forward,
-              color: Colors.white,
+              color: Colors.red,
             ),
             done: const Text('Done',
                 style: TextStyle(
-                    fontWeight: FontWeight.w600, color: Colors.white)),
-            controlsMargin: const EdgeInsets.all(16),
+                    fontSize: 15,
+                    fontWeight: FontWeight.w600,
+                    color: Colors.white)),
+            controlsMargin: const EdgeInsets.all(10),
             controlsPadding: const EdgeInsets.all(4),
             dotsDecorator: const DotsDecorator(
-              size: Size(10.0, 10.0),
-              color: Colors.white,
+              size: Size(60.0, 10.0),
+              color: Colors.red,
               activeSize: Size(22.0, 10.0),
-              activeColor: Colors.amber,
+              activeColor: Colors.white,
               activeShape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.all(Radius.circular(25.0)),
               ),
@@ -140,7 +142,7 @@ class _welcomescreenState extends State<welcomescreen> {
             dotsContainerDecorator: const ShapeDecoration(
               color: Colors.black54,
               shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.all(Radius.circular(8.0)),
+                borderRadius: BorderRadius.all(Radius.circular(100.0)),
               ),
             ),
           )

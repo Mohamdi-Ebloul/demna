@@ -40,7 +40,7 @@ class appbarfix extends StatelessWidget implements PreferredSizeWidget {
                   )
                 : Row(
                     children: [
-                      Text("login", style: TextStyle(fontSize: 25)),
+                      Text("Login", style: TextStyle(fontSize: 25)),
                       Icon(
                         Icons.login,
                         size: 35,

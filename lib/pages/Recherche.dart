@@ -113,8 +113,9 @@ class _SearchPageState extends State<SearchPage> {
                   width: 250,
                   child: TextFormField(
                     decoration: InputDecoration(
-                      hintText: 'Address',
-                    ),
+                        hintText: 'Address',
+                        border: OutlineInputBorder(),
+                        suffixIcon: Icon(Icons.place)),
                     onChanged: (value) {
                       setState(() {
                         _address = value;

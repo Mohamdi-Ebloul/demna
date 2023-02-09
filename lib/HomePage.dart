@@ -49,32 +49,6 @@ class _HomePageState extends State<HomePage> {
         child: Column(
           children: [
             InkWell(
-              onTap: () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => Ajoutedonneur()));
-              },
-              child: Container(
-                margin: EdgeInsets.all(5),
-                width: 250,
-                height: 50,
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(50.0),
-                ),
-                child: ListTile(
-                  title: Text(
-                    "Inscription",
-                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
-                  ),
-                  leading: Icon(
-                    Icons.bloodtype_outlined,
-                    color: Color.fromARGB(255, 199, 13, 0),
-                    size: 40,
-                  ),
-                ),
-              ),
-            ),
-            InkWell(
                 onTap: () {
                   Navigator.push(context,
                       MaterialPageRoute(builder: (context) => SearchPage()));

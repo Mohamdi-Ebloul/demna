@@ -61,8 +61,9 @@ class _AjoutedonneurState extends State<Ajoutedonneur> {
                 children: <Widget>[
                   TextFormField(
                     decoration: InputDecoration(
-                      labelText: "Nom",
-                    ),
+                        labelText: "Nom",
+                        border: OutlineInputBorder(),
+                        suffixIcon: Icon(Icons.person)),
                     validator: (value) {
                       if (value!.isEmpty) {
                         return "Veuillez entrer un nom";
@@ -75,10 +76,14 @@ class _AjoutedonneurState extends State<Ajoutedonneur> {
                       });
                     },
                   ),
+                  SizedBox(
+                    height: 10,
+                  ),
                   TextFormField(
                     decoration: InputDecoration(
-                      labelText: "Téléphone",
-                    ),
+                        labelText: "Téléphone",
+                        border: OutlineInputBorder(),
+                        suffixIcon: Icon(Icons.mobile_friendly)),
                     validator: (value) {
                       if (value!.isEmpty) {
                         return "Veuillez entrer un numéro de téléphone";
@@ -91,10 +96,14 @@ class _AjoutedonneurState extends State<Ajoutedonneur> {
                       });
                     },
                   ),
+                  SizedBox(
+                    height: 10,
+                  ),
                   TextFormField(
                     decoration: InputDecoration(
-                      labelText: "Date naissance",
-                    ),
+                        labelText: "Date naissance",
+                        border: OutlineInputBorder(),
+                        suffixIcon: Icon(Icons.date_range)),
                     validator: (value) {
                       if (value!.isEmpty) {
                         return "Veuillez entrer votre date_naissance";
@@ -107,11 +116,15 @@ class _AjoutedonneurState extends State<Ajoutedonneur> {
                       });
                     },
                   ),
+                  SizedBox(
+                    height: 10,
+                  ),
                   TextFormField(
                     obscureText: true,
                     decoration: InputDecoration(
-                      labelText: "Password",
-                    ),
+                        labelText: "Password",
+                        border: OutlineInputBorder(),
+                        suffixIcon: Icon(Icons.password)),
                     validator: (value) {
                       if (value!.isEmpty) {
                         return "Veuillez entrer votre password";
