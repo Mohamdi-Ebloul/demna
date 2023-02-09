@@ -1,5 +1,4 @@
-import 'package:demna/sidebar.dart';
-import 'package:demna/sidebar.dart';
+import 'package:demna/Introduction.dart';
 import 'package:flutter/material.dart';
 import 'package:demna/HomePage.dart';
 import 'package:demna/pages/Profile.dart';

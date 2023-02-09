@@ -9,7 +9,9 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'main.dart';
 
 class welcomescreen extends StatefulWidget {
-  const welcomescreen({super.key});
+  const welcomescreen({
+    super.key,
+  });
 
   @override
   State<welcomescreen> createState() => _welcomescreenState();

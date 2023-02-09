@@ -4,6 +4,9 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:url_launcher/url_launcher.dart';
 import '../HomePage.dart';
+import '../fix/appbarfix.dart';
+import '../fix/drawerfix.dart';
+import '../fix/navigation.dart';
 
 class SearchPage extends StatefulWidget {
   @override
@@ -44,25 +47,11 @@ class _SearchPageState extends State<SearchPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Donors'),
-        backgroundColor: Color.fromARGB(255, 199, 13, 0),
+      appBar: appbarfix(
+        title: 'Rechercher',
       ),
-      bottomNavigationBar: CurvedNavigationBar(
-        color: Color.fromARGB(255, 199, 13, 0),
-        backgroundColor: Colors.blueAccent,
-        items: <Widget>[
-          Icon(Icons.home, size: 30),
-        ],
-        onTap: (index) {
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) => HomePage(),
-            ),
-          );
-        },
-      ),
+      drawer: drawerfix(),
+      bottomNavigationBar: navigation(),
       body: Container(
         padding: EdgeInsets.all(10),
         height: MediaQuery.of(context).size.height,

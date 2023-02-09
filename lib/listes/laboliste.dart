@@ -2,30 +2,19 @@ import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
 
 import '../HomePage.dart';
+import '../fix/appbarfix.dart';
+import '../fix/drawerfix.dart';
+import '../fix/navigation.dart';
 
 class LaboListPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text("Liste des Laboratoires"),
-        backgroundColor: Color.fromARGB(255, 199, 13, 0),
+      appBar: appbarfix(
+        title: 'Liste des Laboratoires',
       ),
-      bottomNavigationBar: CurvedNavigationBar(
-        color: Color.fromARGB(255, 199, 13, 0),
-        backgroundColor: Colors.blueAccent,
-        items: <Widget>[
-          Icon(Icons.home, size: 30),
-        ],
-        onTap: (index) {
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) => HomePage(),
-            ),
-          );
-        },
-      ),
+      drawer: drawerfix(),
+      bottomNavigationBar: navigation(),
       body: ListView.builder(
         itemCount: 3,
         itemBuilder: (context, index) {

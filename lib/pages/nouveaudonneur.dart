@@ -5,6 +5,9 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../HomePage.dart';
+import '../fix/appbarfix.dart';
+import '../fix/drawerfix.dart';
+import '../fix/navigation.dart';
 import 'Profile.dart';
 
 class Ajoutedonneur extends StatefulWidget {
@@ -44,25 +47,11 @@ class _AjoutedonneurState extends State<Ajoutedonneur> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: Text("Inscripter"),
-          backgroundColor: Color.fromARGB(255, 199, 13, 0),
+        appBar: appbarfix(
+          title: 'Inscripter',
         ),
-        bottomNavigationBar: CurvedNavigationBar(
-          color: Color.fromARGB(255, 199, 13, 0),
-          backgroundColor: Colors.blueAccent,
-          items: <Widget>[
-            Icon(Icons.home, size: 30),
-          ],
-          onTap: (index) {
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => HomePage(),
-              ),
-            );
-          },
-        ),
+        drawer: drawerfix(),
+        bottomNavigationBar: navigation(),
         body: Center(
           child: Padding(
             padding: EdgeInsets.all(20.0),

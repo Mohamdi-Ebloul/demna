@@ -1,8 +1,11 @@
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
+import 'package:demna/fix/navigation.dart';
 import 'package:flutter/material.dart';
 import 'package:demna/login.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../HomePage.dart';
+import '../fix/appbarfix.dart';
+import '../fix/drawerfix.dart';
 
 class ProfilePage extends StatefulWidget {
   @override
@@ -52,25 +55,11 @@ class _ProfilePageState extends State<ProfilePage> {
     // int index = int.parse(arg as String);
 
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Donors'),
-        backgroundColor: Color.fromARGB(255, 199, 13, 0),
+      appBar: appbarfix(
+        title: 'Donors',
       ),
-      bottomNavigationBar: CurvedNavigationBar(
-        color: Color.fromARGB(255, 199, 13, 0),
-        backgroundColor: Colors.blueAccent,
-        items: <Widget>[
-          Icon(Icons.home, size: 30),
-        ],
-        onTap: (index) {
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) => HomePage(),
-            ),
-          );
-        },
-      ),
+      drawer: drawerfix(),
+      bottomNavigationBar: navigation(),
       body: Column(
         children: <Widget>[
           Padding(

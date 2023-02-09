@@ -3,6 +3,9 @@ import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
 // import 'package:google_maps_flutter/google_maps_flutter.dart';
 import '../HomePage.dart';
+import '../fix/appbarfix.dart';
+import '../fix/drawerfix.dart';
+import '../fix/navigation.dart';
 
 class HopitauxListPage extends StatelessWidget {
   // final Completer<GoogleMapController> _controller =
@@ -14,25 +17,11 @@ class HopitauxListPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text("Liste des Hopitaux"),
-        backgroundColor: Color.fromARGB(255, 199, 13, 0),
+      appBar: appbarfix(
+        title: 'Liste des Hopitaux',
       ),
-      bottomNavigationBar: CurvedNavigationBar(
-        color: Color.fromARGB(255, 199, 13, 0),
-        backgroundColor: Colors.blueAccent,
-        items: <Widget>[
-          Icon(Icons.home, size: 30),
-        ],
-        onTap: (index) {
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) => HomePage(),
-            ),
-          );
-        },
-      ),
+      drawer: drawerfix(),
+      bottomNavigationBar: navigation(),
       // body: GoogleMap(
       //   mapType: MapType.hybrid,
       //   initialCameraPosition: _kGooglePlex,

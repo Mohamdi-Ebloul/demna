@@ -10,6 +10,9 @@ import 'package:demna/pages/Recherche.dart';
 import 'package:demna/main.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import 'fix/appbarfix.dart';
+import 'fix/drawerfix.dart';
+import 'fix/navigation.dart';
 import 'login.dart';
 
 class HomePage extends StatefulWidget {
@@ -36,183 +39,47 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: Text('Ma Santé'),
-          backgroundColor: Color.fromARGB(255, 199, 13, 0),
-        ),
-        drawer: Drawer(
-          child: Container(
-            child: ListView(
-              children: <Widget>[
-                DrawerHeader(
-                  child: Container(
-                    child: Icon(
-                      Icons.bloodtype,
-                      color: Color.fromARGB(255, 199, 13, 0),
-                      size: 150,
-                    ),
-                  ),
+      // ignore: prefer_const_constructors
+      appBar: appbarfix(
+        title: 'Ma Santé',
+      ),
+      drawer: drawerfix(),
+      body: new Container(
+        margin: EdgeInsets.all(70),
+        child: Column(
+          children: [
+            InkWell(
+              onTap: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => Ajoutedonneur()));
+              },
+              child: Container(
+                margin: EdgeInsets.all(5),
+                width: 250,
+                height: 50,
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(50.0),
                 ),
-                ListTile(
-                  leading: Icon(
-                    Icons.home,
-                    color: Color.fromARGB(255, 199, 13, 0),
-                    size: 40,
-                  ),
+                child: ListTile(
                   title: Text(
-                    ' Acceil',
-                    style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 20,
-                    ),
+                    "Inscription",
+                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
                   ),
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => HomePage(),
-                      ),
-                    );
-                  },
-                ),
-                ListTile(
                   leading: Icon(
-                    Icons.local_hospital,
+                    Icons.bloodtype_outlined,
                     color: Color.fromARGB(255, 199, 13, 0),
                     size: 40,
                   ),
-                  title: Text('Hospitals',
-                      style: TextStyle(
-                        color: Colors.black,
-                        fontSize: 20,
-                      )),
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => HopitauxListPage(),
-                      ),
-                    );
-                  },
                 ),
-                ListTile(
-                  leading: Icon(
-                    Icons.medical_services,
-                    color: Color.fromARGB(255, 199, 13, 0),
-                    size: 40,
-                  ),
-                  title: Text('Clinics',
-                      style: TextStyle(
-                        color: Colors.black,
-                        fontSize: 20,
-                      )),
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => ClinicListPage(),
-                      ),
-                    );
-                  },
-                ),
-                ListTile(
-                  leading: Icon(
-                    Icons.favorite,
-                    color: Color.fromARGB(255, 199, 13, 0),
-                    size: 40,
-                  ),
-                  title: Text('Pharmacies',
-                      style: TextStyle(
-                        color: Colors.black,
-                        fontSize: 20,
-                      )),
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => PharmacyListPage(),
-                      ),
-                    );
-                  },
-                ),
-                ListTile(
-                  leading: Icon(
-                    Icons.science,
-                    color: Color.fromARGB(255, 199, 13, 0),
-                    size: 40,
-                  ),
-                  title: Text('Laboratories',
-                      style: TextStyle(
-                        color: Colors.black,
-                        fontSize: 20,
-                      )),
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => LaboListPage(),
-                      ),
-                    );
-                  },
-                ),
-                ListTile(
-                  leading: Icon(
-                    Icons.info,
-                    color: Color.fromARGB(255, 199, 13, 0),
-                    size: 40,
-                  ),
-                  title: Text('Doneur',
-                      style: TextStyle(
-                        color: Colors.black87,
-                        fontSize: 20,
-                      )),
-                  onTap: () {
-                    if (con == 0) {
-                      Navigator.push(context,
-                          MaterialPageRoute(builder: (context) => LoginPage()));
-                    } else {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => ProfilePage()));
-                    }
-                  },
-                ),
-                ListTile(
-                  leading: Icon(
-                    Icons.email,
-                    color: Color.fromARGB(255, 199, 13, 0),
-                    size: 40,
-                  ),
-                  title: Text('Contact Us',
-                      style: TextStyle(
-                        color: Colors.black87,
-                        fontSize: 20,
-                      )),
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => ContactPage(),
-                      ),
-                    );
-                  },
-                ),
-              ],
+              ),
             ),
-          ),
-        ),
-        body: new Container(
-          margin: EdgeInsets.all(70),
-          child: Column(
-            children: [
-              InkWell(
+            InkWell(
                 onTap: () {
                   Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => Ajoutedonneur()));
+                      MaterialPageRoute(builder: (context) => SearchPage()));
                 },
                 child: Container(
-                  margin: EdgeInsets.all(5),
                   width: 250,
                   height: 50,
                   decoration: BoxDecoration(
@@ -221,110 +88,85 @@ class _HomePageState extends State<HomePage> {
                   ),
                   child: ListTile(
                     title: Text(
-                      "Inscription",
+                      "Recherche ",
                       style:
                           TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
                     ),
                     leading: Icon(
-                      Icons.bloodtype_outlined,
+                      Icons.search,
                       color: Color.fromARGB(255, 199, 13, 0),
                       size: 40,
                     ),
                   ),
-                ),
-              ),
-              InkWell(
+                )),
+            Spacer(),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                InkWell(
                   onTap: () {
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => SearchPage()));
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => ClinicListPage()));
                   },
-                  child: Container(
-                    width: 250,
-                    height: 50,
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(50.0),
-                    ),
-                    child: ListTile(
-                      title: Text(
-                        "Recherche ",
-                        style: TextStyle(
-                            fontWeight: FontWeight.bold, fontSize: 20),
-                      ),
-                      leading: Icon(
-                        Icons.search,
-                        color: Color.fromARGB(255, 199, 13, 0),
-                        size: 40,
-                      ),
-                    ),
-                  )),
-              Spacer(),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [
-                  InkWell(
-                    onTap: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => ClinicListPage()));
-                    },
-                    child: Icon(
-                      Icons.medical_services,
-                      color: Colors.red,
-                      size: 80,
-                    ),
+                  child: Icon(
+                    Icons.medical_services,
+                    color: Colors.red,
+                    size: 80,
                   ),
-                  InkWell(
-                    onTap: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => PharmacyListPage()));
-                    },
-                    child: Icon(
-                      Icons.local_pharmacy,
-                      color: Colors.red,
-                      size: 80,
-                    ),
+                ),
+                InkWell(
+                  onTap: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => PharmacyListPage()));
+                  },
+                  child: Icon(
+                    Icons.local_pharmacy,
+                    color: Colors.red,
+                    size: 80,
                   ),
-                ],
-              ),
-              Spacer(),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [
-                  InkWell(
-                    onTap: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => HopitauxListPage()));
-                    },
-                    child: Icon(
-                      Icons.local_hospital,
-                      color: Colors.red,
-                      size: 80,
-                    ),
+                ),
+              ],
+            ),
+            Spacer(),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                InkWell(
+                  onTap: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => HopitauxListPage()));
+                  },
+                  child: Icon(
+                    Icons.local_hospital,
+                    color: Colors.red,
+                    size: 80,
                   ),
-                  InkWell(
-                    onTap: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => LaboListPage()));
-                    },
-                    child: Icon(
-                      Icons.biotech,
-                      color: Colors.red,
-                      size: 80,
-                    ),
-                  )
-                ],
-              )
-            ],
-          ),
-          alignment: Alignment.center,
-        ));
+                ),
+                InkWell(
+                  onTap: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => LaboListPage()));
+                  },
+                  child: Icon(
+                    Icons.biotech,
+                    color: Colors.red,
+                    size: 80,
+                  ),
+                )
+              ],
+            )
+          ],
+        ),
+        alignment: Alignment.center,
+      ),
+    );
   }
 }
