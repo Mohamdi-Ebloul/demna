@@ -1,11 +1,10 @@
-import 'package:demna/pages/nouveaudonneur.dart';
+import 'package:demna/sidebar.dart';
+import 'package:demna/sidebar.dart';
 import 'package:flutter/material.dart';
 import 'package:demna/HomePage.dart';
-import 'package:demna/test.dart';
-import 'package:demna/api/api.dart';
-import 'package:demna/model/donorflutter.dart';
-import 'package:http/http.dart' as http;
-import 'dart:convert';
+import 'package:demna/pages/Profile.dart';
+
+var con = 0;
 
 void main() {
   runApp(MyApp());
@@ -17,7 +16,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       initialRoute: '/',
       routes: {'/ProfilePage': (context) => ProfilePage()},
-      home: HomePage(),
+      home: welcomescreen(),
     );
   }
 }

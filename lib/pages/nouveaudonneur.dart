@@ -1,9 +1,10 @@
+import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:demna/api/api.dart';
-import 'package:demna/model/donorflutter.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
-import 'package:demna/main.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import '../HomePage.dart';
 import 'Profile.dart';
 
 class Ajoutedonneur extends StatefulWidget {
@@ -45,6 +46,22 @@ class _AjoutedonneurState extends State<Ajoutedonneur> {
     return Scaffold(
         appBar: AppBar(
           title: Text("Inscripter"),
+          backgroundColor: Color.fromARGB(255, 199, 13, 0),
+        ),
+        bottomNavigationBar: CurvedNavigationBar(
+          color: Color.fromARGB(255, 199, 13, 0),
+          backgroundColor: Colors.blueAccent,
+          items: <Widget>[
+            Icon(Icons.home, size: 30),
+          ],
+          onTap: (index) {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => HomePage(),
+              ),
+            );
+          },
         ),
         body: Center(
           child: Padding(
@@ -55,7 +72,7 @@ class _AjoutedonneurState extends State<Ajoutedonneur> {
                 children: <Widget>[
                   TextFormField(
                     decoration: InputDecoration(
-                      hintText: "Nom",
+                      labelText: "Nom",
                     ),
                     validator: (value) {
                       if (value!.isEmpty) {
@@ -71,7 +88,7 @@ class _AjoutedonneurState extends State<Ajoutedonneur> {
                   ),
                   TextFormField(
                     decoration: InputDecoration(
-                      hintText: "Téléphone",
+                      labelText: "Téléphone",
                     ),
                     validator: (value) {
                       if (value!.isEmpty) {
@@ -87,7 +104,7 @@ class _AjoutedonneurState extends State<Ajoutedonneur> {
                   ),
                   TextFormField(
                     decoration: InputDecoration(
-                      hintText: "date_naissance",
+                      labelText: "Date naissance",
                     ),
                     validator: (value) {
                       if (value!.isEmpty) {
@@ -102,8 +119,9 @@ class _AjoutedonneurState extends State<Ajoutedonneur> {
                     },
                   ),
                   TextFormField(
+                    obscureText: true,
                     decoration: InputDecoration(
-                      hintText: "password",
+                      labelText: "Password",
                     ),
                     validator: (value) {
                       if (value!.isEmpty) {
@@ -235,25 +253,45 @@ class _AjoutedonneurState extends State<Ajoutedonneur> {
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
                         ElevatedButton(
-                          child: Text("Enregistrer"),
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: Color.fromARGB(255, 199, 13, 0),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(18.0),
+                            ),
+                          ),
+                          child: Text(
+                            'Enregistrer ',
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 20.0,
+                            ),
+                          ),
                           onPressed: () async {
                             int index = 0;
                             String a = 'false';
                             while (index <= posts.length - 1) {
-                              if (posts[index]['mobile'] == mobile) {
+                              if (posts[index]['date_naissance'] ==
+                                      date_naissance &&
+                                  posts[index]['bloodgroup'] == bloodgroup) {
                                 API.activedonor(posts[index]['id']);
-                                API.Ajouter(Nom, mobile, address, bloodgroup,
-                                    date_naissance, password);
-                                Navigator.pushNamed(context, "/ProfilePage",
-                                    arguments: dataf(
-                                        "${posts[index]['id']}",
-                                        "${posts[index]['Nom']}",
-                                        "${posts[index]['mobile']}",
-                                        "${posts[index]['date_naissance']}",
-                                        "${posts[index]['bloodgroup']}",
-                                        "${posts[index]['address']}",
-                                        "${posts[index]['status']}",
-                                        "${posts[index]['date']}"));
+                                API.Ajouter(
+                                    Nom,
+                                    mobile,
+                                    address,
+                                    bloodgroup,
+                                    date_naissance,
+                                    password,
+                                    "${posts[index]['id']}");
+
+                                pageRoue(
+                                    "${posts[index]['Nom']}",
+                                    "${posts[index]['mobile']}",
+                                    "${posts[index]['date_naissance']}",
+                                    "${posts[index]['bloodgroup']}",
+                                    "${posts[index]['address']}",
+                                    "${posts[index]['status']}",
+                                    "${posts[index]['date']}");
+
                                 a = 'true';
 
                                 break;
@@ -270,7 +308,23 @@ class _AjoutedonneurState extends State<Ajoutedonneur> {
                                         Text('Ces Information ne pas correct'),
                                     actions: <Widget>[
                                       ElevatedButton(
-                                        child: Text('OK'),
+                                        style: ElevatedButton.styleFrom(
+                                          backgroundColor:
+                                              Color.fromARGB(255, 199, 13, 0),
+                                          shape: RoundedRectangleBorder(
+                                            borderRadius:
+                                                BorderRadius.circular(18.0),
+                                          ),
+                                        ),
+                                        child: Center(
+                                          child: Text(
+                                            'Ok ',
+                                            style: TextStyle(
+                                              color: Colors.white,
+                                              fontSize: 20.0,
+                                            ),
+                                          ),
+                                        ),
                                         onPressed: () {
                                           Navigator.of(context).pop();
                                         },
@@ -291,94 +345,28 @@ class _AjoutedonneurState extends State<Ajoutedonneur> {
           ),
         ));
   }
+
+  void pageRoue(
+      String token,
+      String mobile,
+      String date_naissance,
+      String bloodgroup,
+      String address,
+      String status,
+      String lastdonat) async {
+    SharedPreferences pref = await SharedPreferences.getInstance();
+    await pref.setString("login", token);
+    await pref.setString("mobile", mobile);
+    await pref.setString("date_naissance", date_naissance);
+    await pref.setString("bloodgroup", bloodgroup);
+    await pref.setString("address", address);
+    await pref.setString("status", status);
+    await pref.setString("lastdonat", lastdonat);
+    await pref.setInt("con", 1);
+    Navigator.of(context).pushAndRemoveUntil(
+        MaterialPageRoute(builder: (context) => ProfilePage()),
+        (route) => false);
+  }
 }
 
 //profile
-
-class ProfilePage extends StatefulWidget {
-  @override
-  const ProfilePage({super.key});
-
-  _ProfilePageState createState() => _ProfilePageState();
-}
-
-class _ProfilePageState extends State<ProfilePage> {
-  // Variables pour stocker les informations de l'utilisateur
-
-  // Variables pour stocker les informations modifiables
-  String _newName = '';
-  String _newTel = "";
-  String _newEmail = "";
-  String _newWilaye = "";
-  String _age = '';
-  String _newLastDonation = '';
-
-  final _formKey = GlobalKey<FormState>();
-
-  @override
-  Widget build(BuildContext context) {
-    final arg = ModalRoute.of(context)!.settings.arguments as dataf;
-    // int index = int.parse(arg as String);
-
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Donors'),
-      ),
-      body: Column(
-        children: <Widget>[
-          // Affichage des informations de l'utilisateur
-
-          // Formulaire pour mettre à jour les informations
-          Form(
-            child: Column(
-              children: <Widget>[
-                TextFormField(
-                  initialValue: arg.Nom,
-                  onChanged: (value) => _newName = value,
-                  decoration: InputDecoration(labelText: 'Nom'),
-                ),
-                TextFormField(
-                  initialValue: arg.mobile,
-                  onChanged: (value) => _newTel = value,
-                  decoration: InputDecoration(labelText: 'Telephone'),
-                ),
-                TextFormField(
-                  onChanged: (value) => _age = value,
-                  initialValue: arg.date_naissance,
-                  decoration: InputDecoration(labelText: 'date_naissance'),
-                ),
-                TextFormField(
-                  showCursor: false,
-                  readOnly: true,
-                  initialValue: arg.bloodgroup,
-                  decoration: InputDecoration(labelText: 'Groupe sanguin'),
-                ),
-                TextFormField(
-                  onChanged: (value) => _newWilaye = value,
-                  initialValue: arg.address,
-                  decoration: InputDecoration(labelText: 'wilaya'),
-                ),
-                TextFormField(
-                  initialValue: arg.status,
-                  decoration: InputDecoration(labelText: 'status'),
-                ),
-                TextFormField(
-                  initialValue: arg.date,
-                  onChanged: (value) => _newLastDonation = value,
-                  decoration: InputDecoration(labelText: 'Dernier don'),
-                ),
-                // Bouton pour mettre à jour les informations
-                ElevatedButton(
-                  onPressed: () async {
-                    API.Modifier(arg.id, _newName, _newTel, _newWilaye);
-                  },
-                  child: Text('Mettre à jour'),
-                ),
-              ],
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-}

@@ -1,4 +1,7 @@
+import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
+
+import '../HomePage.dart';
 
 class ClinicListPage extends StatelessWidget {
   @override
@@ -6,6 +9,22 @@ class ClinicListPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text("Liste des cliniques"),
+        backgroundColor: Color.fromARGB(255, 199, 13, 0),
+      ),
+      bottomNavigationBar: CurvedNavigationBar(
+        color: Color.fromARGB(255, 199, 13, 0),
+        backgroundColor: Colors.blueAccent,
+        items: <Widget>[
+          Icon(Icons.home, size: 30),
+        ],
+        onTap: (index) {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => HomePage(),
+            ),
+          );
+        },
       ),
       body: ListView.builder(
         itemCount: 3,

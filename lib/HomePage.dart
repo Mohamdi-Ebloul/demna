@@ -1,3 +1,4 @@
+import 'package:demna/pages/Profile.dart';
 import 'package:demna/pages/nouveaudonneur.dart';
 import 'package:flutter/material.dart';
 import 'package:demna/pages/contactpage.dart';
@@ -7,30 +8,47 @@ import 'package:demna/listes/laboliste.dart';
 import 'package:demna/listes/pharmacyliste.dart';
 import 'package:demna/pages/Recherche.dart';
 import 'package:demna/main.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
-class HomePage extends StatelessWidget {
+import 'login.dart';
+
+class HomePage extends StatefulWidget {
+  @override
+  const HomePage({super.key});
+
+  _HomePageState createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  @override
+  void initState() {
+    super.initState();
+    getcred();
+  }
+
+  void getcred() async {
+    SharedPreferences pref = await SharedPreferences.getInstance();
+    setState(() {
+      con = pref.getInt("con")!;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
           title: Text('Ma Santé'),
-          backgroundColor: Colors.black,
+          backgroundColor: Color.fromARGB(255, 199, 13, 0),
         ),
         drawer: Drawer(
           child: Container(
-            decoration: new BoxDecoration(
-              image: new DecorationImage(
-                image: const AssetImage("Images/background.jpg"),
-                fit: BoxFit.cover,
-              ),
-            ),
             child: ListView(
               children: <Widget>[
                 DrawerHeader(
                   child: Container(
                     child: Icon(
                       Icons.bloodtype,
-                      color: Color.fromARGB(255, 6, 105, 185),
+                      color: Color.fromARGB(255, 199, 13, 0),
                       size: 150,
                     ),
                   ),
@@ -38,12 +56,14 @@ class HomePage extends StatelessWidget {
                 ListTile(
                   leading: Icon(
                     Icons.home,
-                    color: Color.fromARGB(255, 44, 154, 243),
+                    color: Color.fromARGB(255, 199, 13, 0),
+                    size: 40,
                   ),
                   title: Text(
                     ' Acceil',
                     style: TextStyle(
-                      color: Color.fromARGB(255, 44, 154, 243),
+                      color: Colors.black,
+                      fontSize: 20,
                     ),
                   ),
                   onTap: () {
@@ -58,11 +78,13 @@ class HomePage extends StatelessWidget {
                 ListTile(
                   leading: Icon(
                     Icons.local_hospital,
-                    color: Color.fromARGB(255, 44, 154, 243),
+                    color: Color.fromARGB(255, 199, 13, 0),
+                    size: 40,
                   ),
                   title: Text('Hospitals',
                       style: TextStyle(
-                        color: Color.fromARGB(255, 44, 154, 243),
+                        color: Colors.black,
+                        fontSize: 20,
                       )),
                   onTap: () {
                     Navigator.push(
@@ -76,11 +98,13 @@ class HomePage extends StatelessWidget {
                 ListTile(
                   leading: Icon(
                     Icons.medical_services,
-                    color: Color.fromARGB(255, 44, 154, 243),
+                    color: Color.fromARGB(255, 199, 13, 0),
+                    size: 40,
                   ),
                   title: Text('Clinics',
                       style: TextStyle(
-                        color: Color.fromARGB(255, 44, 154, 243),
+                        color: Colors.black,
+                        fontSize: 20,
                       )),
                   onTap: () {
                     Navigator.push(
@@ -94,11 +118,13 @@ class HomePage extends StatelessWidget {
                 ListTile(
                   leading: Icon(
                     Icons.favorite,
-                    color: Color.fromARGB(255, 44, 154, 243),
+                    color: Color.fromARGB(255, 199, 13, 0),
+                    size: 40,
                   ),
                   title: Text('Pharmacies',
                       style: TextStyle(
-                        color: Color.fromARGB(255, 44, 154, 243),
+                        color: Colors.black,
+                        fontSize: 20,
                       )),
                   onTap: () {
                     Navigator.push(
@@ -112,11 +138,13 @@ class HomePage extends StatelessWidget {
                 ListTile(
                   leading: Icon(
                     Icons.science,
-                    color: Color.fromARGB(255, 44, 154, 243),
+                    color: Color.fromARGB(255, 199, 13, 0),
+                    size: 40,
                   ),
                   title: Text('Laboratories',
                       style: TextStyle(
-                        color: Color.fromARGB(255, 44, 154, 243),
+                        color: Colors.black,
+                        fontSize: 20,
                       )),
                   onTap: () {
                     Navigator.push(
@@ -130,29 +158,36 @@ class HomePage extends StatelessWidget {
                 ListTile(
                   leading: Icon(
                     Icons.info,
-                    color: Color.fromARGB(255, 44, 154, 243),
+                    color: Color.fromARGB(255, 199, 13, 0),
+                    size: 40,
                   ),
                   title: Text('Doneur',
                       style: TextStyle(
-                        color: Color.fromARGB(255, 44, 154, 243),
+                        color: Colors.black87,
+                        fontSize: 20,
                       )),
-                  // onTap: () {
-                  //   Navigator.push(
-                  //     context,
-                  //     MaterialPageRoute(
-                  //       builder: (context) => (),
-                  //     ),
-                  //   );
-                  // },
+                  onTap: () {
+                    if (con == 0) {
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) => LoginPage()));
+                    } else {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => ProfilePage()));
+                    }
+                  },
                 ),
                 ListTile(
                   leading: Icon(
                     Icons.email,
-                    color: Color.fromARGB(255, 44, 154, 243),
+                    color: Color.fromARGB(255, 199, 13, 0),
+                    size: 40,
                   ),
                   title: Text('Contact Us',
                       style: TextStyle(
-                        color: Color.fromARGB(255, 44, 154, 243),
+                        color: Colors.black87,
+                        fontSize: 20,
                       )),
                   onTap: () {
                     Navigator.push(
@@ -167,192 +202,129 @@ class HomePage extends StatelessWidget {
             ),
           ),
         ),
-        body: new Stack(
-          children: <Widget>[
-            new Container(
-              decoration: new BoxDecoration(
-                image: new DecorationImage(
-                  image: const AssetImage("Images/background.jpg"),
-                  fit: BoxFit.cover,
+        body: new Container(
+          margin: EdgeInsets.all(70),
+          child: Column(
+            children: [
+              InkWell(
+                onTap: () {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => Ajoutedonneur()));
+                },
+                child: Container(
+                  margin: EdgeInsets.all(5),
+                  width: 250,
+                  height: 50,
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(50.0),
+                  ),
+                  child: ListTile(
+                    title: Text(
+                      "Inscription",
+                      style:
+                          TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                    ),
+                    leading: Icon(
+                      Icons.bloodtype_outlined,
+                      color: Color.fromARGB(255, 199, 13, 0),
+                      size: 40,
+                    ),
+                  ),
                 ),
               ),
-            ),
-            new Container(
-              margin: EdgeInsets.all(30),
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(10),
-              ),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
+              InkWell(
+                  onTap: () {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => SearchPage()));
+                  },
+                  child: Container(
+                    width: 250,
+                    height: 50,
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(50.0),
+                    ),
+                    child: ListTile(
+                      title: Text(
+                        "Recherche ",
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold, fontSize: 20),
+                      ),
+                      leading: Icon(
+                        Icons.search,
+                        color: Color.fromARGB(255, 199, 13, 0),
+                        size: 40,
+                      ),
+                    ),
+                  )),
+              Spacer(),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
-                  Column(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      Column(children: <Widget>[
-                        InkWell(
-                          onTap: () {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => Ajoutedonneur()));
-                          },
-                          child: Container(
-                            margin: EdgeInsets.all(5),
-                            width: 350,
-                            height: 50,
-                            decoration: BoxDecoration(
-                              color: Colors.white,
-                              borderRadius: BorderRadius.circular(50.0),
-                            ),
-                            child: Center(
-                                child: ListTile(
-                              title: Text(
-                                "Inscripter comme donneur",
-                                style: TextStyle(
-                                    fontWeight: FontWeight.bold, fontSize: 20),
-                              ),
-                              leading: Icon(
-                                Icons.bloodtype_outlined,
-                                color: Color.fromARGB(255, 44, 154, 243),
-                              ),
-                            )),
-                          ),
-                        ),
-                      ]),
-                      Column(children: <Widget>[
-                        InkWell(
-                            onTap: () {
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => SearchPage()));
-                            },
-                            child: Container(
-                              width: 350,
-                              height: 50,
-                              decoration: BoxDecoration(
-                                color: Colors.white,
-                                borderRadius: BorderRadius.circular(50.0),
-                              ),
-                              child: Center(
-                                child: ListTile(
-                                  title: Text(
-                                    "Recherch donneur",
-                                    style: TextStyle(
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: 20),
-                                  ),
-                                  leading: Icon(
-                                    Icons.search,
-                                    color: Color.fromARGB(255, 44, 154, 243),
-                                  ),
-                                ),
-                              ),
-                            )),
-                      ]),
-                    ],
+                  InkWell(
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => ClinicListPage()));
+                    },
+                    child: Icon(
+                      Icons.medical_services,
+                      color: Colors.red,
+                      size: 80,
+                    ),
                   ),
-                  Spacer(),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      Column(children: <Widget>[
-                        InkWell(
-                          onTap: () {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => ClinicListPage()));
-                          },
-                          child: Image.asset(
-                            'Images/clc.png',
-                            height: 130.0,
-                            width: 130,
-                            fit: BoxFit.cover,
-                          ),
-                        ),
-                        Text(
-                          "Cliniques",
-                          style: TextStyle(
-                              fontWeight: FontWeight.bold, fontSize: 25),
-                        ),
-                      ]),
-                      Column(children: <Widget>[
-                        InkWell(
-                          onTap: () {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => PharmacyListPage()));
-                          },
-                          child: Image.asset(
-                            'Images/heart.png',
-                            height: 130.0,
-                            width: 130,
-                            fit: BoxFit.cover,
-                          ),
-                        ),
-                        Text(
-                          "Pharmacies",
-                          style: TextStyle(
-                              fontWeight: FontWeight.bold, fontSize: 25),
-                        )
-                      ]),
-                    ],
+                  InkWell(
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => PharmacyListPage()));
+                    },
+                    child: Icon(
+                      Icons.local_pharmacy,
+                      color: Colors.red,
+                      size: 80,
+                    ),
                   ),
-                  Spacer(),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      Column(children: <Widget>[
-                        InkWell(
-                          onTap: () {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => HopitauxListPage()));
-                          },
-                          child: Image.asset(
-                            'Images/medicament.png',
-                            height: 130.0,
-                            width: 130,
-                            fit: BoxFit.cover,
-                          ),
-                        ),
-                        Text(
-                          "Hopitaux",
-                          style: TextStyle(
-                              fontWeight: FontWeight.bold, fontSize: 25),
-                        )
-                      ]),
-                      Column(children: <Widget>[
-                        InkWell(
-                          onTap: () {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => LaboListPage()));
-                          },
-                          child: Image.asset(
-                            'Images/biosample.png',
-                            height: 130.0,
-                            width: 130,
-                            fit: BoxFit.cover,
-                          ),
-                        ),
-                        Text(
-                          "Laboratoires",
-                          style: TextStyle(
-                              fontWeight: FontWeight.bold, fontSize: 25),
-                        )
-                      ])
-                    ],
-                  )
                 ],
               ),
-              alignment: Alignment.center,
-            )
-          ],
+              Spacer(),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  InkWell(
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => HopitauxListPage()));
+                    },
+                    child: Icon(
+                      Icons.local_hospital,
+                      color: Colors.red,
+                      size: 80,
+                    ),
+                  ),
+                  InkWell(
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => LaboListPage()));
+                    },
+                    child: Icon(
+                      Icons.biotech,
+                      color: Colors.red,
+                      size: 80,
+                    ),
+                  )
+                ],
+              )
+            ],
+          ),
+          alignment: Alignment.center,
         ));
   }
 }

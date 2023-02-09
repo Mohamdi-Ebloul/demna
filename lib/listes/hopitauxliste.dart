@@ -1,79 +1,45 @@
+import 'dart:async';
+import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
+// import 'package:google_maps_flutter/google_maps_flutter.dart';
+import '../HomePage.dart';
 
 class HopitauxListPage extends StatelessWidget {
+  // final Completer<GoogleMapController> _controller =
+  //     Completer<GoogleMapController>();
+  // static const CameraPosition _kGooglePlex = CameraPosition(
+  //   target: LatLng(37.42796133580664, -122.085749655962),
+  //   zoom: 14.4746,
+  // );
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text("Liste des Hopitaux"),
+        backgroundColor: Color.fromARGB(255, 199, 13, 0),
       ),
-      body: ListView.builder(
-        itemCount: 3,
-        itemBuilder: (context, index) {
-          return ClinicItem(
-            name: "Hopitaux $index",
-            location: "Ville $index",
-            status: index % 2 == 0 ? "Ouverte" : "Fermée",
+      bottomNavigationBar: CurvedNavigationBar(
+        color: Color.fromARGB(255, 199, 13, 0),
+        backgroundColor: Colors.blueAccent,
+        items: <Widget>[
+          Icon(Icons.home, size: 30),
+        ],
+        onTap: (index) {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => HomePage(),
+            ),
           );
         },
       ),
-    );
-  }
-}
-
-class ClinicItem extends StatelessWidget {
-  final String name;
-  final String location;
-  final String status;
-
-  ClinicItem({
-    required this.name,
-    required this.location,
-    required this.status,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      height: 300,
-      padding: EdgeInsets.all(20),
-      margin: EdgeInsets.all(10),
-      color: Color.fromARGB(255, 192, 223, 238),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: <Widget>[
-          Column(
-            children: [
-              Text(
-                name,
-                style: Theme.of(context).textTheme.headline6,
-              ),
-            ],
-          ),
-          Column(
-            children: [
-              Image.asset(
-                'Images/heart.png',
-                height: 130.0,
-                width: 130,
-              )
-            ],
-          ),
-          Column(
-            children: [Text("info")],
-          ),
-          Column(
-            children: [
-              Text(status),
-            ],
-          ),
-          Column(
-            children: [
-              Text(location),
-            ],
-          )
-        ],
-      ),
+      // body: GoogleMap(
+      //   mapType: MapType.hybrid,
+      //   initialCameraPosition: _kGooglePlex,
+      //   onMapCreated: (GoogleMapController controller) {
+      //     _controller.complete(controller);
+      //   },
+      // ),
     );
   }
 }

@@ -4,6 +4,8 @@
         android:label="demna"
         android:name="${applicationName}"
         android:icon="@mipmap/launcher_icon">
+          <meta-data android:name="com.google.android.geo.API_KEY"
+               android:value="AIzaSyDc8gj_Txw2TQ_Pljv3yw4qz7QWUecO8ps"/>
         <activity
             android:name=".MainActivity"
             android:exported="true"

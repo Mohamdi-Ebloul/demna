@@ -1,5 +1,8 @@
+import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
+
+import '../HomePage.dart';
 
 class ContactPage extends StatelessWidget {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
@@ -12,6 +15,22 @@ class ContactPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text('Contact Us'),
+        backgroundColor: Color.fromARGB(255, 199, 13, 0),
+      ),
+      bottomNavigationBar: CurvedNavigationBar(
+        color: Color.fromARGB(255, 199, 13, 0),
+        backgroundColor: Colors.blueAccent,
+        items: <Widget>[
+          Icon(Icons.home, size: 30),
+        ],
+        onTap: (index) {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => HomePage(),
+            ),
+          );
+        },
       ),
       body: Form(
         key: _formKey,
@@ -74,7 +93,19 @@ class ContactPage extends StatelessWidget {
                     }
                   }
                 },
-                child: Text('Envoyer '),
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Color.fromARGB(255, 199, 13, 0),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(18.0),
+                  ),
+                ),
+                child: Text(
+                  'Envoyer ',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 20.0,
+                  ),
+                ),
               ),
             ],
           ),

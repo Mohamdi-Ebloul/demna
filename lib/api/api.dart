@@ -28,8 +28,14 @@ class API {
     }
   }
 
-  static Future<Donorflutter> Ajouter(String Nom, String mobile, String address,
-      String bloodgroup, String date_naissance, String password) async {
+  static Future<Donorflutter> Ajouter(
+      String Nom,
+      String mobile,
+      String address,
+      String bloodgroup,
+      String date_naissance,
+      String password,
+      String id) async {
     final response =
         await post(Uri.parse('https://banqsang.pythonanywhere.com/ajouter/'),
             headers: {'Content-Type': 'application/json;charset=UTF-8'},
@@ -40,6 +46,7 @@ class API {
               "bloodgroup": bloodgroup,
               "date_naissance": date_naissance,
               "password": password,
+              "idonor": id,
             }));
 
     //print(response.body);

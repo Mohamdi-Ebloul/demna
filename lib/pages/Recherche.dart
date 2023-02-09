@@ -1,7 +1,9 @@
+import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:url_launcher/url_launcher.dart';
+import '../HomePage.dart';
 
 class SearchPage extends StatefulWidget {
   @override
@@ -44,6 +46,22 @@ class _SearchPageState extends State<SearchPage> {
     return Scaffold(
       appBar: AppBar(
         title: Text('Donors'),
+        backgroundColor: Color.fromARGB(255, 199, 13, 0),
+      ),
+      bottomNavigationBar: CurvedNavigationBar(
+        color: Color.fromARGB(255, 199, 13, 0),
+        backgroundColor: Colors.blueAccent,
+        items: <Widget>[
+          Icon(Icons.home, size: 30),
+        ],
+        onTap: (index) {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => HomePage(),
+            ),
+          );
+        },
       ),
       body: Container(
         padding: EdgeInsets.all(10),
