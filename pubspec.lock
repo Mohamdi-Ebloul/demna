@@ -216,6 +216,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "3.3.0"
+  intl:
+    dependency: transitive
+    description:
+      name: intl
+      sha256: a3715e3bc90294e971cb7dc063fbf3cd9ee0ebf8604ffeafabd9e6f16abbdbe6
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.18.0"
   introduction_screen:
     dependency: "direct main"
     description:
@@ -272,6 +280,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.8.0"
+  open_file:
+    dependency: "direct main"
+    description:
+      name: open_file
+      sha256: c9f504ca01826a600a407628598325fb1af9f0ec12d0a0303c824255e1d0c24b
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.1.1"
   path:
     dependency: transitive
     description:
@@ -280,6 +296,30 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.8.2"
+  path_provider:
+    dependency: "direct main"
+    description:
+      name: path_provider
+      sha256: dcea5feb97d8abf90cab9e9030b497fb7c3cbf26b7a1fe9e3ef7dcb0a1ddec95
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.0.12"
+  path_provider_android:
+    dependency: transitive
+    description:
+      name: path_provider_android
+      sha256: a776c088d671b27f6e3aa8881d64b87b3e80201c64e8869b811325de7a76c15e
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.0.22"
+  path_provider_foundation:
+    dependency: transitive
+    description:
+      name: path_provider_foundation
+      sha256: "62a68e7e1c6c459f9289859e2fae58290c981ce21d1697faf54910fe1faa4c74"
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.1.1"
   path_provider_linux:
     dependency: transitive
     description:
@@ -437,6 +477,22 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.2.0"
+  syncfusion_flutter_core:
+    dependency: transitive
+    description:
+      name: syncfusion_flutter_core
+      sha256: b5cb2525beb38fae36a363f72f8a2db92ed3995d6f0695968412cc6836e3a7b7
+      url: "https://pub.dev"
+    source: hosted
+    version: "20.4.49"
+  syncfusion_flutter_pdf:
+    dependency: "direct main"
+    description:
+      name: syncfusion_flutter_pdf
+      sha256: ae1684beabe92d28d106cba52449243c35475ef47ce52097396fffd4b3f17741
+      url: "https://pub.dev"
+    source: hosted
+    version: "20.4.49"
   term_glyph:
     dependency: transitive
     description:
@@ -566,5 +622,5 @@ packages:
     source: hosted
     version: "3.1.1"
 sdks:
-  dart: ">=2.18.6 <4.0.0"
+  dart: ">=2.18.6 <3.0.0"
   flutter: ">=3.3.0"

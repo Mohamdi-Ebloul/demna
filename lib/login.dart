@@ -163,6 +163,8 @@ class _LoginPageState extends State<LoginPage> {
         //     .showSnackBar(SnackBar(content: Text("Token: ${body['token']} ")));
         pageRoue(
             body['token'],
+            body['id'],
+            body['Nom'],
             body['mobile'],
             body['date_naissance'],
             body['bloodgroup'],
@@ -181,6 +183,8 @@ class _LoginPageState extends State<LoginPage> {
 
   void pageRoue(
       String token,
+      int id,
+      String Nom,
       String mobile,
       String date_naissance,
       String bloodgroup,
@@ -189,6 +193,8 @@ class _LoginPageState extends State<LoginPage> {
       String lastdonat) async {
     SharedPreferences pref = await SharedPreferences.getInstance();
     await pref.setString("login", token);
+    await pref.setInt("id", id);
+    await pref.setString("Nom", Nom);
     await pref.setString("mobile", mobile);
     await pref.setString("date_naissance", date_naissance);
     await pref.setString("bloodgroup", bloodgroup);

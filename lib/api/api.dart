@@ -52,4 +52,40 @@ class API {
     //print(response.body);
     return Donorflutter.fromJson(json.decode(response.body));
   }
+
+  static ModifierTel(String idk, String mobile) async {
+    final response = await put(
+        Uri.parse('https://banqsang.pythonanywhere.com/modifier/$idk/'),
+        headers: {"Content-Type": "application/json"},
+        body: json.encode({'mobile': mobile}));
+    if (response.statusCode == 200) {
+      // Update successful
+    } else {
+      // Update failed
+    }
+  }
+
+  static Modifieraddresse(String idk, String wilaya) async {
+    final response = await put(
+        Uri.parse('https://banqsang.pythonanywhere.com/modifier/$idk/'),
+        headers: {"Content-Type": "application/json"},
+        body: json.encode({'address': wilaya}));
+    if (response.statusCode == 200) {
+      // Update successful
+    } else {
+      // Update failed
+    }
+  }
+
+  static Modifierpassword(String idk, String password) async {
+    final response = await put(
+        Uri.parse('https://banqsang.pythonanywhere.com/modifier/$idk/'),
+        headers: {"Content-Type": "application/json"},
+        body: json.encode({'password': password}));
+    if (response.statusCode == 200) {
+      // Update successful
+    } else {
+      // Update failed
+    }
+  }
 }
