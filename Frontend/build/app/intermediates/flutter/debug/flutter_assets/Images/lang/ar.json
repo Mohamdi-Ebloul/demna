@@ -1,0 +1,26 @@
+
+
+{
+    "Inscripter" : "التسجيل" , 
+    "homepage" : "الصفحة الرئيسية", 
+    "Recherche" : "بحث  " ,
+    "Login" : "تسجيل الدخول",
+    "Hopitaux" : "المستشفيات",
+    "Cliniques" : "العيادات",
+    "Pharmacies" : "الصيدليات",
+    "Laboratories" : "المختبرات",
+    "Donneur" : "متبرع",
+    "Contactez_nous" : "اتصل بنا",
+    "Logout" : "تسجيل الخروج",
+    "Nom" : "الاسم",
+    "Téléphone" : "الهاتف",
+    "NNI" : "NNI",
+    "Address" : "العنوان",
+    "Password" : "كلمة المرور",
+    "Enregistrer" : "تسجيل",
+
+    "Raports_Médicaux" : "التقارير الطبية",
+
+    "Date_naissance" : "تاريخ الميلاد"
+
+}

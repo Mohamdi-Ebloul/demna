@@ -1,0 +1,4 @@
+#Thu Feb 23 13:23:31 GMT 2023
+base.0=/home/mohamdi/StudioProjects/demna/build/app/intermediates/dex/debug/mergeDexDebug/classes.dex
+renamed.0=classes.dex
+path.0=classes.dex
